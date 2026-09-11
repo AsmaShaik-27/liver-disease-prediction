@@ -135,49 +135,6 @@ The application also provides sample healthy and high-risk patient profiles for 
 * **CSS3**
 * **JavaScript**
 
----
-
-##  Project Structure
-
-```text
-Indian-Liver-Disease-Prediction/
-│
-├── app.py
-├── main.py
-├── indian_liver_patient.csv
-├── requirements.txt
-├── README.md
-│
-├── models/
-│   └── prediction_pipeline.joblib
-│
-├── plots/
-│   ├── 01_target_distribution.png
-│   ├── 02_numerical_distributions.png
-│   ├── 03_categorical_distribution.png
-│   ├── 04_correlation_heatmap.png
-│   ├── 05_feature_boxplots_by_target.png
-│   ├── 06_confusion_matrices.png
-│   ├── 07_roc_curves.png
-│   └── 08_feature_importance.png
-│
-├── src/
-│   ├── __init__.py
-│   ├── preprocessing.py
-│   ├── eda.py
-│   ├── model_training.py
-│   ├── evaluation.py
-│   └── predict.py
-│
-├── templates/
-│   └── index.html
-│
-└── static/
-    ├── css/
-    │   └── style.css
-    └── js/
-        └── main.js
-```
 
 ---
 
