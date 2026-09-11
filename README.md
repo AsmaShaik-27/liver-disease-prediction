@@ -156,7 +156,6 @@ Feature importance represents predictive association and should not be interpret
 * Evaluate on larger multi-center datasets
 * Add Docker deployment
 * Improve model calibration and external validation
-* Extend the application with additional clinical features
 
 ---
 
