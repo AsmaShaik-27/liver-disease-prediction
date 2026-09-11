@@ -1,8 +1,3 @@
-"""
-Model Selection, Cross-Validation, Imbalance Handling, and Hyperparameter Tuning Module.
-Trains diverse candidate ML algorithms using imblearn Pipelines and Stratified K-Fold CV.
-"""
-
 import numpy as np
 import pandas as pd
 from typing import Dict, Any, Tuple
@@ -22,9 +17,7 @@ from imblearn.over_sampling import SMOTE
 
 
 def get_candidate_models(random_state: int = 42) -> Dict[str, Any]:
-    """
-    Returns a dictionary of machine learning classifier model instances.
-    """
+
     models = {
         "Logistic Regression": LogisticRegression(max_iter=1000, class_weight='balanced', random_state=random_state),
         "Decision Tree": DecisionTreeClassifier(max_depth=5, class_weight='balanced', random_state=random_state),
@@ -39,12 +32,7 @@ def get_candidate_models(random_state: int = 42) -> Dict[str, Any]:
 
 
 def create_pipeline(model: Any, use_smote: bool = True, random_state: int = 42) -> ImbPipeline:
-    """
-    Constructs an imblearn Pipeline combining:
-    1. StandardScaler (Feature normalization)
-    2. SMOTE (Applied ONLY during fit on training data folds to prevent leakage)
-    3. Classifier algorithm
-    """
+
     steps = [('scaler', StandardScaler())]
     if use_smote:
         steps.append(('smote', SMOTE(random_state=random_state)))
@@ -60,10 +48,7 @@ def train_candidate_models(
     random_state: int = 42,
     use_smote: bool = True
 ) -> Dict[str, ImbPipeline]:
-    """
-    Trains all candidate models on X_train, y_train using imblearn pipelines.
-    Returns a dictionary of fitted pipelines.
-    """
+
     models = get_candidate_models(random_state=random_state)
     fitted_pipelines = {}
 
@@ -82,9 +67,7 @@ def tune_hyperparameters(
     y_train: pd.Series,
     random_state: int = 42
 ) -> Tuple[Dict[str, Any], Dict[str, float]]:
-    """
-    Performs Stratified 5-Fold Grid Search Hyperparameter Tuning for top ensemble models.
-    """
+
     print("\n[Hyperparameter Tuning] Performing Stratified 5-Fold Grid Search on top models...")
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=random_state)
 

@@ -1,10 +1,4 @@
-"""
-Main Master Execution Script for Indian Liver Patient Dataset / Cirrhosis Prediction System.
-Runs the complete end-to-end Machine Learning pipeline:
-Data Loading -> Cleaning -> EDA -> Preprocessing -> Train/Test Split -> Model Training ->
-Imbalance Handling -> Hyperparameter Tuning -> Evaluation -> Best Model Selection ->
-Feature Importance -> New Patient Prediction Interface.
-"""
+
 
 import sys
 import warnings
@@ -33,9 +27,6 @@ def print_section_header(title: str):
 def main():
     print_section_header("Indian Liver Patient - Cirrhosis Prediction ML System")
 
-    # ---------------------------------------------------------
-    # STEP 1: DATASET LOADING & INSPECTION
-    # ---------------------------------------------------------
     print_section_header("1. Dataset Loading & Inspection")
     raw_df = load_raw_data("indian_liver_patient.csv")
     info = get_dataset_info(raw_df)
@@ -58,9 +49,7 @@ def main():
     print("  - Class '1': Patients diagnosed with liver disease / cirrhosis outcome (Positive Class).")
     print("  - Class '2': Non-liver disease patients / healthy control group (Negative Class).")
 
-    # ---------------------------------------------------------
-    # STEP 2: DATA PREPROCESSING & CLEANING
-    # ---------------------------------------------------------
+
     print_section_header("2. Data Preprocessing & Cleaning")
     print(f"Missing Values Check (Raw):")
     for col, count in info['missing_values'].items():
@@ -69,7 +58,6 @@ def main():
 
     print(f"Duplicate Records Check (Raw): {info['duplicate_count']} duplicated rows found.")
 
-    # Clean data (deduplicate, impute missing values, map target 1->1, 2->0, encode Gender)
     clean_df = clean_data(raw_df)
 
     print("\nCategorical and Numerical Features:")
@@ -79,9 +67,6 @@ def main():
     print(f"  - Categorical Features ({len(cat_features)}): {cat_features}")
     print(f"  - Target Feature: 'Dataset' (Mapped: 1 = Disease, 0 = Healthy Control)")
 
-    # ---------------------------------------------------------
-    # STEP 3: EXPLORATORY DATA ANALYSIS (EDA)
-    # ---------------------------------------------------------
     print_section_header("3. Exploratory Data Analysis (EDA)")
     print("Running EDA analysis and generating high-resolution plots in 'plots/' directory...")
     eda_summary = run_eda(clean_df, raw_df=raw_df, plot_dir="plots")
@@ -105,9 +90,6 @@ def main():
     print("  4. 04_correlation_heatmap.png")
     print("  5. 05_feature_boxplots_by_target.png")
 
-    # ---------------------------------------------------------
-    # STEP 4: TRAIN-TEST SPLIT
-    # ---------------------------------------------------------
     print_section_header("4. Train-Test Split")
     RANDOM_SEED = 42
     X_train, X_test, y_train, y_test = split_data(
@@ -115,32 +97,22 @@ def main():
     )
     feature_names = X_train.columns.tolist()
 
-    # ---------------------------------------------------------
-    # STEP 5: MODEL TRAINING & CLASS IMBALANCE HANDLING
-    # ---------------------------------------------------------
     print_section_header("5. Model Selection & Candidate Training")
     print("Class Imbalance Note: Target ratio is ~71% positive vs ~29% negative.")
     print("Applying SMOTE resampling strictly inside cross-validation & training folds.")
 
-    # Train baseline pipelines
     candidate_pipelines = train_candidate_models(X_train, y_train, random_state=RANDOM_SEED, use_smote=True)
 
-    # Hyperparameter tuning on top ensemble models
     tuned_pipelines, best_cv_scores = tune_hyperparameters(X_train, y_train, random_state=RANDOM_SEED)
 
-    # Combine all pipelines for comprehensive evaluation
     all_pipelines = {**candidate_pipelines, **tuned_pipelines}
 
-    # ---------------------------------------------------------
-    # STEP 6: MODEL TESTING AND EVALUATION
-    # ---------------------------------------------------------
     print_section_header("6. Unseen Test Set Evaluation & Comparison")
     comparison_df, eval_results = evaluate_all_models(all_pipelines, X_test, y_test)
 
     print("Model Performance Comparison Table (Evaluated on Unseen 20% Test Set):")
     print(comparison_df.to_string(index=False))
 
-    # Generate evaluation plots
     plot_confusion_matrices(eval_results, top_n=4, plot_dir="plots")
     plot_roc_curves(all_pipelines, X_test, y_test, plot_dir="plots")
 
@@ -148,9 +120,6 @@ def main():
     print("  - 06_confusion_matrices.png")
     print("  - 07_roc_curves.png")
 
-    # ---------------------------------------------------------
-    # STEP 7: BEST MODEL SELECTION
-    # ---------------------------------------------------------
     print_section_header("7. Best Model Selection")
     best_model_name = comparison_df.iloc[0]["Model"]
     best_pipeline = all_pipelines[best_model_name]
@@ -169,12 +138,8 @@ def main():
     print("    high overall discrimination ability (ROC-AUC) is far more important than raw Accuracy.")
     print(f"  - '{best_model_name}' achieved the highest F1-Score ({best_metrics['F1-Score']:.4f}) and ROC-AUC ({best_metrics['ROC-AUC']:.4f}).")
 
-    # Save model artifact
     saved_model_path = save_model_pipeline(best_pipeline, feature_names, model_name=best_model_name, models_dir="models")
 
-    # ---------------------------------------------------------
-    # STEP 8: FEATURE IMPORTANCE & EXPLAINABILITY
-    # ---------------------------------------------------------
     print_section_header("8. Feature Importance & Explainability")
     feat_imp_df = plot_feature_importance(
         best_pipeline, feature_names, X_test=X_test, y_test=y_test,
@@ -187,12 +152,8 @@ def main():
 
     print("\nSaved Feature Importance Plot to 'plots/08_feature_importance.png'")
 
-    # ---------------------------------------------------------
-    # STEP 9: NEW PATIENT PREDICTION PIPELINE VERIFICATION
-    # ---------------------------------------------------------
     print_section_header("9. New Patient Prediction Pipeline Verification")
     
-    # Test Patient Case 1: High Risk Patient (Elevated Bilirubin & Liver Enzymes)
     patient_1 = {
         'Age': 62,
         'Gender': 'Male',
@@ -206,7 +167,6 @@ def main():
         'Albumin_and_Globulin_Ratio': 0.74
     }
 
-    # Test Patient Case 2: Low Risk Patient (Normal Liver Biomarkers)
     patient_2 = {
         'Age': 25,
         'Gender': 'Female',

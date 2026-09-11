@@ -1,7 +1,4 @@
-"""
-Flask Web Application for Indian Liver Patient Disease Prediction ML System.
-Serves web interface and POST /predict JSON API endpoint using existing pre-trained LightGBM pipeline.
-"""
+
 
 import os
 import sys
@@ -18,10 +15,7 @@ MODEL_PATH = os.path.join(os.path.dirname(__file__), "models", "prediction_pipel
 
 
 def validate_patient_inputs(data: dict):
-    """
-    Validates and casts the 10 clinical input parameters.
-    Returns (is_valid, cleaned_dict_or_error_message).
-    """
+
     field_mappings = {
         'age': ('Age', int, 1, 120, "Age must be a positive integer between 1 and 120 years."),
         'gender': ('Gender', str, None, None, "Gender must be either 'Male' or 'Female'."),
@@ -64,7 +58,6 @@ def validate_patient_inputs(data: dict):
         elif clean_k in [alias_dict[k] for k in alias_dict]:
             normalized_data[clean_k] = val
 
-    # Check missing fields
     missing = [k for k in field_mappings if k not in normalized_data or normalized_data[k] is None or str(normalized_data[k]).strip() == '']
     if missing:
         return False, f"Missing required input fields: {', '.join(missing)}"

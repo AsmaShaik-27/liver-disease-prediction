@@ -1,12 +1,8 @@
-/**
- * LiverCare AI - Frontend JavaScript Application Module
- */
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ---------------------------------------------------------
-    // 1. MOBILE NAVIGATION TOGGLE
-    // ---------------------------------------------------------
+    
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileNav = document.getElementById('mobile-nav');
     const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -23,15 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ---------------------------------------------------------
-    // 2. TOOLTIP ACCESSIBILITY FOR MOBILE & DESKTOP
-    // ---------------------------------------------------------
     const tooltipTriggers = document.querySelectorAll('.tooltip-trigger');
 
     tooltipTriggers.forEach(trigger => {
         trigger.addEventListener('click', (e) => {
             e.stopPropagation();
-            // Toggle current active state
             const isActive = trigger.classList.contains('active');
             tooltipTriggers.forEach(t => t.classList.remove('active'));
             if (!isActive) {
@@ -44,9 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tooltipTriggers.forEach(t => t.classList.remove('active'));
     });
 
-    // ---------------------------------------------------------
-    // 3. QUICK TEST PRESETS
-    // ---------------------------------------------------------
+  
     const presetHealthyBtn = document.getElementById('preset-healthy');
     const presetHighRiskBtn = document.getElementById('preset-highrisk');
     const presetCustomBtn = document.getElementById('preset-custom');
@@ -136,9 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (alertBanner) alertBanner.classList.add('hidden');
     }
 
-    // ---------------------------------------------------------
-    // 4. PREDICTION FORM SUBMISSION (AJAX TO BACKEND ML MODEL)
-    // ---------------------------------------------------------
+   
     const btnSubmit = document.getElementById('btn-submit');
 
     if (form) {
@@ -150,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const payload = {};
             formData.forEach((val, key) => payload[key] = val);
 
-            // UI Loading State
             btnSubmit.disabled = true;
             btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Processing Model Prediction...`;
 
@@ -179,9 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ---------------------------------------------------------
-    // 5. RENDER PREDICTION OUTPUT
-    // ---------------------------------------------------------
+    
     function renderResult(data) {
         const outputBadge = document.getElementById('output-badge');
         const riskTag = document.getElementById('risk-tag');
@@ -189,11 +174,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const progressBarFill = document.getElementById('progress-bar-fill');
         const explanationText = document.getElementById('output-explanation-text');
 
-        const prob = data.probability; // e.g. 96.94
+        const prob = data.probability; 
         const isPositive = data.prediction_class === 1;
-        const riskCat = data.risk_category; // "High", "Moderate", "Low"
+        const riskCat = data.risk_category; 
 
-        // 1. Result Badge
         if (isPositive) {
             outputBadge.className = 'result-badge positive';
             outputBadge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Liver Disease Positive`;
@@ -204,11 +188,9 @@ document.addEventListener('DOMContentLoaded', () => {
             explanationText.textContent = "The model predicts that this patient belongs to the negative liver-disease class based on the provided clinical parameters.";
         }
 
-        // 2. Risk Category Tag
         riskTag.textContent = riskCat.toUpperCase();
         riskTag.className = `risk-tag ${riskCat.toLowerCase()}`;
 
-        // 3. Probability & Animated Progress Bar
         probDisplay.textContent = `${prob.toFixed(2)}%`;
 
         progressBarFill.className = 'progress-fill';
@@ -220,7 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
             progressBarFill.classList.add('fill-low');
         }
 
-        // Reveal section & animate progress bar fill
         outputSection.classList.remove('hidden');
         setTimeout(() => {
             progressBarFill.style.width = `${Math.min(Math.max(prob, 5), 100)}%`;
@@ -229,9 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollToSection('output-section');
     }
 
-    // ---------------------------------------------------------
-    // 6. RESET PREDICTION BUTTON
-    // ---------------------------------------------------------
     const btnResetPrediction = document.getElementById('btn-reset-prediction');
     if (btnResetPrediction) {
         btnResetPrediction.addEventListener('click', () => {

@@ -1,7 +1,4 @@
-"""
-Exploratory Data Analysis (EDA) Module for Liver Cirrhosis Prediction System.
-Generates comprehensive visualization plots and summary reports for clinical dataset features.
-"""
+
 
 import os
 import pandas as pd
@@ -15,15 +12,12 @@ plt.rcParams.update({'font.sans-serif': 'DejaVu Sans', 'font.size': 10})
 
 
 def ensure_plot_dir(plot_dir: str = "plots"):
-    """Creates output directory for plots if it doesn't exist."""
     if not os.path.exists(plot_dir):
         os.makedirs(plot_dir)
 
 
 def plot_target_distribution(df: pd.DataFrame, plot_dir: str = "plots"):
-    """
-    Visualizes target class distribution (1=Cirrhosis/Liver Disease, 0=Healthy/Control).
-    """
+
     ensure_plot_dir(plot_dir)
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
@@ -53,9 +47,7 @@ def plot_target_distribution(df: pd.DataFrame, plot_dir: str = "plots"):
 
 
 def plot_numerical_distributions(df: pd.DataFrame, plot_dir: str = "plots"):
-    """
-    Plots histograms with KDE curves for all numerical clinical features.
-    """
+
     ensure_plot_dir(plot_dir)
     num_cols = ['Age', 'Total_Bilirubin', 'Direct_Bilirubin', 'Alkaline_Phosphotase',
                 'Alamine_Aminotransferase', 'Aspartate_Aminotransferase',
@@ -79,9 +71,7 @@ def plot_numerical_distributions(df: pd.DataFrame, plot_dir: str = "plots"):
 
 
 def plot_categorical_distribution(df: pd.DataFrame, raw_df: pd.DataFrame, plot_dir: str = "plots"):
-    """
-    Plots Gender distribution against the Cirrhosis outcome.
-    """
+
     ensure_plot_dir(plot_dir)
     fig, ax = plt.subplots(figsize=(8, 5))
 
@@ -101,9 +91,7 @@ def plot_categorical_distribution(df: pd.DataFrame, raw_df: pd.DataFrame, plot_d
 
 
 def plot_correlation_heatmap(df: pd.DataFrame, plot_dir: str = "plots"):
-    """
-    Computes and plots Pearson correlation matrix for all features and target.
-    """
+
     ensure_plot_dir(plot_dir)
     fig, ax = plt.subplots(figsize=(11, 9))
 
@@ -122,9 +110,7 @@ def plot_correlation_heatmap(df: pd.DataFrame, plot_dir: str = "plots"):
 
 
 def plot_feature_boxplots(df: pd.DataFrame, plot_dir: str = "plots"):
-    """
-    Plots boxplots comparing key clinical biomarkers across Liver vs Non-Liver patient groups.
-    """
+
     ensure_plot_dir(plot_dir)
     key_features = ['Total_Bilirubin', 'Direct_Bilirubin', 'Alkaline_Phosphotase',
                     'Alamine_Aminotransferase', 'Aspartate_Aminotransferase', 'Albumin']
@@ -151,9 +137,7 @@ def plot_feature_boxplots(df: pd.DataFrame, plot_dir: str = "plots"):
 
 
 def run_eda(df: pd.DataFrame, raw_df: pd.DataFrame = None, plot_dir: str = "plots") -> dict:
-    """
-    Runs complete EDA pipeline: plots all figures and summarizes key findings.
-    """
+
     if raw_df is None:
         raw_df = df
 

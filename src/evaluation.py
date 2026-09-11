@@ -1,8 +1,4 @@
-"""
-Model Testing, Evaluation, Comparison, Feature Importance, and Plotting Module.
-Computes test metrics (Accuracy, Precision, Recall, F1, ROC-AUC, Confusion Matrix),
-generates comparison tables, plots ROC curves and feature importances.
-"""
+
 
 import os
 import numpy as np
@@ -19,18 +15,14 @@ from sklearn.inspection import permutation_importance
 
 
 def ensure_plot_dir(plot_dir: str = "plots"):
-    """Creates output plot directory if needed."""
     if not os.path.exists(plot_dir):
         os.makedirs(plot_dir)
 
 
 def evaluate_single_model(pipeline: Any, X_test: pd.DataFrame, y_test: pd.Series) -> dict:
-    """
-    Evaluates a single model pipeline on unseen test set.
-    """
+  
     y_pred = pipeline.predict(X_test)
 
-    # Get prediction probabilities for ROC-AUC
     if hasattr(pipeline, "predict_proba"):
         y_prob = pipeline.predict_proba(X_test)[:, 1]
     elif hasattr(pipeline, "decision_function"):
@@ -58,12 +50,7 @@ def evaluate_single_model(pipeline: Any, X_test: pd.DataFrame, y_test: pd.Series
 
 
 def evaluate_all_models(pipelines: dict, X_test: pd.DataFrame, y_test: pd.Series) -> Tuple[pd.DataFrame, dict]:
-    """
-    Evaluates a dictionary of model pipelines on X_test, y_test.
-    Returns:
-    - Comparison DataFrame sorted by F1-Score / ROC-AUC.
-    - Detailed evaluation dict containing confusion matrices & probabilities.
-    """
+   
     eval_results = {}
     table_rows = []
 
@@ -86,9 +73,7 @@ def evaluate_all_models(pipelines: dict, X_test: pd.DataFrame, y_test: pd.Series
 
 
 def plot_confusion_matrices(eval_results: dict, top_n: int = 4, plot_dir: str = "plots"):
-    """
-    Plots confusion matrix heatmaps for the top N models.
-    """
+
     ensure_plot_dir(plot_dir)
     model_names = list(eval_results.keys())[:top_n]
 
@@ -112,9 +97,7 @@ def plot_confusion_matrices(eval_results: dict, top_n: int = 4, plot_dir: str = 
 
 
 def plot_roc_curves(pipelines: dict, X_test: pd.DataFrame, y_test: pd.Series, plot_dir: str = "plots"):
-    """
-    Plots ROC Curves for all evaluated models on a single figure.
-    """
+   
     ensure_plot_dir(plot_dir)
     plt.figure(figsize=(10, 7))
 
@@ -152,10 +135,7 @@ def plot_feature_importance(
     best_model_name: str = "Best Model",
     plot_dir: str = "plots"
 ) -> pd.DataFrame:
-    """
-    Extracts and visualizes feature importances for the best model.
-    Uses native tree/coef importances if available, or permutation importance as fallback.
-    """
+    
     ensure_plot_dir(plot_dir)
     classifier = best_pipeline.named_steps['classifier']
 

@@ -1,28 +1,23 @@
-/* ==========================================================================
-   LiverCare AI - Healthcare Design System (Sage Green, Mint, Cream, Charcoal)
-   ========================================================================== */
+
 
 :root {
-    /* Healthcare Inspired Color Palette - NO BLUE */
-    --bg-page: #f9f8f3;             /* Warm cream / off-white */
-    --bg-card: #ffffff;             /* Pure white */
-    --bg-card-subtle: #f3f1e9;      /* Slightly darker cream for accents */
+    --bg-page: #f9f8f3;            
+    --bg-card: #ffffff;            
+    --bg-card-subtle: #f3f1e9;      
     
-    --primary-sage: #4a7c59;        /* Sage green */
+    --primary-sage: #4a7c59;        
     --primary-sage-hover: #3b6547;  
-    --primary-sage-light: #eaf2ed;  /* Soft sage tint */
+    --primary-sage-light: #eaf2ed;  
     
-    --mint-accent: #3d8b7a;         /* Muted teal-green accent */
-    --mint-bg: #e8f3ed;             /* Soft mint background */
-    --mint-border: #d1e5d9;         /* Very light green border */
+    --mint-accent: #3d8b7a;         
+    --mint-bg: #e8f3ed;             
+    --mint-border: #d1e5d9;         
 
-    --text-main: #1f2924;           /* Dark charcoal */
-    --text-muted: #5c6e64;          /* Muted gray-green */
-    --text-light: #83968b;          /* Light gray-green */
+    --text-main: #1f2924;          
+    --text-muted: #5c6e64;          
+    --text-light: #83968b;          
+    --border-light: #e5e8e1;        
     
-    --border-light: #e5e8e1;        /* Light clean border */
-    
-    /* Risk Category Colors */
     --risk-low-bg: #e8f5e9;
     --risk-low-text: #2e7d32;
     --risk-low-border: #a5d6a7;
@@ -187,9 +182,6 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: var(--shadow-md);
 }
 
-/* ==========================================================================
-   1. NAVBAR
-   ========================================================================== */
 .navbar {
     position: sticky;
     top: 0;
@@ -284,9 +276,6 @@ h1, h2, h3, h4, h5, h6 {
     gap: 1rem;
 }
 
-/* ==========================================================================
-   2. HERO SECTION
-   ========================================================================== */
 .hero-section {
     padding: 4.5rem 0 5rem;
     background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-page) 100%);
@@ -375,9 +364,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-muted);
 }
 
-/* ==========================================================================
-   3. HOW IT WORKS
-   ========================================================================== */
 .steps-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -444,9 +430,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.8rem;
 }
 
-/* ==========================================================================
-   4. WHAT WE ANALYZE
-   ========================================================================== */
 .analyze-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -487,9 +470,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-muted);
 }
 
-/* ==========================================================================
-   5. UNDERSTANDING THE MEDICAL TERMS
-   ========================================================================== */
 .terms-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -543,9 +523,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-light);
 }
 
-/* ==========================================================================
-   6. QUICK TEST PRESETS
-   ========================================================================== */
 .presets-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -574,9 +551,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1.5rem;
 }
 
-/* ==========================================================================
-   7. PATIENT PREDICTION FORM
-   ========================================================================== */
 .prediction-card {
     background: var(--bg-card);
     border: 1px solid var(--border-light);
@@ -728,9 +702,6 @@ h1, h2, h3, h4, h5, h6 {
     display: none !important;
 }
 
-/* ==========================================================================
-   8. PREDICTION OUTPUT
-   ========================================================================== */
 .output-card {
     background: var(--bg-card);
     border: 1px solid var(--border-light);
@@ -890,9 +861,6 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-/* ==========================================================================
-   9. MODEL PERFORMANCE
-   ========================================================================== */
 .metrics-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -934,9 +902,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-muted);
 }
 
-/* ==========================================================================
-   10. ABOUT THE DATASET
-   ========================================================================== */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1006,9 +971,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--primary-sage);
 }
 
-/* ==========================================================================
-   11. MEDICAL DISCLAIMER
-   ========================================================================== */
 .disclaimer-section {
     padding-bottom: 4rem;
 }
@@ -1053,9 +1015,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;
 }
 
-/* ==========================================================================
-   12. FOOTER
-   ========================================================================== */
 .footer {
     background: var(--bg-card);
     border-top: 1px solid var(--border-light);
@@ -1082,9 +1041,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-light);
 }
 
-/* ==========================================================================
-   RESPONSIVE LAYOUT (Mobile & Tablet)
-   ========================================================================== */
 @media (max-width: 992px) {
     .hero-grid { grid-template-columns: 1fr; text-align: center; }
     .hero-buttons { justify-content: center; }
