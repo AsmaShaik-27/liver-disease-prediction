@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiverCare AI | Indian Liver Disease Prediction & Clinical Decision Support</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- ==========================================================================
+       1. NAVBAR
+       ========================================================================== -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="#home" class="brand-logo">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <span>LiverCare AI</span>
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="#medical-terms" class="nav-link">Medical Terms</a></li>
+                <li><a href="#quick-test" class="nav-link">Quick Test</a></li>
+                <li><a href="#prediction" class="nav-link">Prediction</a></li>
+                <li><a href="#performance" class="nav-link">Performance</a></li>
+            </ul>
+
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div class="mobile-nav" id="mobile-nav">
+            <ul class="mobile-nav-list">
+                <li><a href="#home" class="nav-link mobile-link">Home</a></li>
+                <li><a href="#how-it-works" class="nav-link mobile-link">How It Works</a></li>
+                <li><a href="#medical-terms" class="nav-link mobile-link">Medical Terms</a></li>
+                <li><a href="#quick-test" class="nav-link mobile-link">Quick Test</a></li>
+                <li><a href="#prediction" class="nav-link mobile-link">Prediction</a></li>
+                <li><a href="#performance" class="nav-link mobile-link">Performance</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==========================================================================
+       2. HERO / PROJECT INTRODUCTION
+       ========================================================================== -->
+    <section class="hero-section" id="home">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="badge badge-sage">
+                    Healthcare AI Platform
+                </span>
+                <h1>Liver Disease Prediction</h1>
+                <div class="hero-tagline">AI-powered prediction using clinical liver function parameters</div>
+                <p class="hero-description">
+                    An intelligent machine learning system that analyzes commonly available patient and liver-function
+                    parameters to estimate whether a patient belongs to the positive liver-disease class.
+                </p>
+                <p class="hero-subtext">
+                    Built using machine learning techniques and the Indian Liver Patient Dataset.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#prediction" class="btn btn-primary">
+                        Start Prediction <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#quick-test" class="btn btn-secondary">
+                        Try Quick Test
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-illustration">
+                <div class="illustration-card">
+                    <div class="illustration-icon">
+                        <i class="fa-solid fa-notes-medical"></i>
+                    </div>
+                    <h3>Clinical Machine Learning</h3>
+                    <p>Evaluating 10 core biochemical markers with LightGBM classification</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       3. HOW IT WORKS
+       ========================================================================== -->
+    <section class="section-padding" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>From patient information to a machine learning prediction</p>
+            </div>
+
+            <div class="steps-grid">
+                <!-- Step 01 -->
+                <div class="step-card">
+                    <span class="step-number">Step 01</span>
+                    <div class="step-icon"><i class="fa-solid fa-user-gear"></i></div>
+                    <h3>Patient Information</h3>
+                    <p>Enter basic patient information and liver-function parameters such as age, gender, bilirubin,
+                        enzymes, proteins, and albumin.</p>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="step-card">
+                    <span class="step-number">Step 02</span>
+                    <div class="step-icon"><i class="fa-solid fa-sliders"></i></div>
+                    <h3>Data Processing</h3>
+                    <p>The entered information is processed using the same preprocessing pipeline used during model
+                        development.</p>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="step-card">
+                    <span class="step-number">Step 03</span>
+                    <div class="step-icon"><i class="fa-solid fa-brain"></i></div>
+                    <h3>Machine Learning</h3>
+                    <p>The trained LightGBM classification model analyzes the clinical parameters and identifies the
+                        most likely liver-disease class.</p>
+                </div>
+
+                <!-- Step 04 -->
+                <div class="step-card">
+                    <span class="step-number">Step 04</span>
+                    <div class="step-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3>Prediction</h3>
+                    <p>The system displays the predicted class, positive-class probability, and a model-based risk
+                        category.</p>
+                </div>
+            </div>
+
+            <div class="process-flow-strip">
+                <span>Patient Data</span>
+                <i class="fa-solid fa-arrow-right"></i>
+                <span>Processing</span>
+                <i class="fa-solid fa-arrow-right"></i>
+                <span>LightGBM</span>
+                <i class="fa-solid fa-arrow-right"></i>
+                <span>Prediction</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       4. WHAT WE ANALYZE
+       ========================================================================== -->
+    <section class="section-padding" style="background-color: var(--bg-card); border-y: 1px solid var(--border-light);"
+        id="what-we-analyze">
+        <div class="container">
+            <div class="section-header">
+                <h2>What We Analyze</h2>
+                <p>Key patient and liver-function parameters used by the model</p>
+            </div>
+
+            <div class="analyze-grid">
+                <!-- Card 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-flask"></i></div>
+                    <div class="feature-info">
+                        <h3>Bilirubin Levels</h3>
+                        <p>Total and direct bilirubin values are included as important indicators in the dataset.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <div class="feature-info">
+                        <h3>Liver Enzymes</h3>
+                        <p>ALT, AST, and alkaline phosphatase are biochemical measurements included in the dataset.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-droplet"></i></div>
+                    <div class="feature-info">
+                        <h3>Protein Levels</h3>
+                        <p>Total proteins and albumin provide information about the patient's biochemical profile.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <div class="feature-info">
+                        <h3>A/G Ratio</h3>
+                        <p>The albumin-to-globulin ratio is included as a laboratory parameter.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-hospital-user"></i></div>
+                    <div class="feature-info">
+                        <h3>Patient Demographics</h3>
+                        <p>Age and gender are included as patient-level features.</p>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <div class="feature-info">
+                        <h3>Machine Learning</h3>
+                        <p>LightGBM is used as the final classification model.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       5. UNDERSTANDING THE MEDICAL TERMS
+       ========================================================================== -->
+    <section class="section-padding" id="medical-terms">
+        <div class="container">
+            <div class="section-header">
+                <h2>Understanding the Medical Terms</h2>
+                <p>Not familiar with these medical values? Here's what they mean.</p>
+            </div>
+
+            <div class="terms-grid">
+                <!-- Term 1: Bilirubin -->
+                <div class="term-card">
+                    <h3><i class="fa-solid fa-vial"></i> Bilirubin</h3>
+                    <p class="term-def">Bilirubin is a yellow substance produced when old red blood cells break down.
+                        The liver processes bilirubin and helps remove it from the body.</p>
+                    <div class="term-why">
+                        <strong>Why included?</strong> Abnormal bilirubin levels can be associated with problems
+                        involving liver function or bile flow.
+                    </div>
+                </div>
+
+                <!-- Term 2: ALT -->
+                <div class="term-card">
+                    <h3><i class="fa-solid fa-wave-square"></i> ALT — Alamine Aminotransferase</h3>
+                    <p class="term-def">ALT is an enzyme found mainly in the liver. When liver cells are damaged, ALT
+                        can enter the bloodstream.</p>
+                    <div class="term-why">
+                        <strong>Why included?</strong> It is commonly used as an indicator of liver-cell injury.
+                    </div>
+                </div>
+
+                <!-- Term 3: AST -->
+                <div class="term-card">
+                    <h3><i class="fa-solid fa-activity"></i> AST — Aspartate Aminotransferase</h3>
+                    <p class="term-def">AST is an enzyme found in the liver and several other tissues. Changes in AST
+                        levels can occur when cells are damaged.</p>
+                    <div class="term-why">
+                        <strong>Why included?</strong> It provides additional information about the patient's
+                        biochemical profile.
+                    </div>
+                </div>
+
+                <!-- Term 4: Alkaline Phosphatase -->
+                <div class="term-card">
+                    <h3><i class="fa-solid fa-capsules"></i> Alkaline Phosphatase</h3>
+                    <p class="term-def">Alkaline phosphatase is an enzyme associated with the liver, bile ducts, and
+                        bones.</p>
+                    <div class="term-why">
+                        <strong>Why included?</strong> Abnormal levels can sometimes be associated with problems
+                        involving bile flow or other conditions.
+                    </div>
+                </div>
+
+                <!-- Term 5: Albumin -->
+                <div class="term-card">
+                    <h3><i class="fa-solid fa-dna"></i> Albumin</h3>
+                    <p class="term-def">Albumin is a protein produced mainly by the liver. It helps maintain fluid
+                        balance in the bloodstream.</p>
+                    <div class="term-why">
+                        <strong>Why included?</strong> Albumin levels can provide information about the patient's
+                        protein and liver-related status.
+                    </div>
+                </div>
+
+                <!-- Term 6: Total Proteins -->
+                <div class="term-card">
+                    <h3><i class="fa-solid fa-layer-group"></i> Total Proteins</h3>
+                    <p class="term-def">Total protein measures the major proteins present in the blood, including
+                        albumin and globulins.</p>
+                    <div class="term-why">
+                        <strong>Why included?</strong> It provides information about the patient's overall protein
+                        profile.
+                    </div>
+                </div>
+
+                <!-- Term 7: A/G Ratio -->
+                <div class="term-card">
+                    <h3><i class="fa-solid fa-percent"></i> Albumin / Globulin Ratio</h3>
+                    <p class="term-def">The A/G ratio compares the amount of albumin with globulins in the blood.</p>
+                    <div class="term-why">
+                        <strong>Why included?</strong> Changes in the ratio can provide additional information about the
+                        patient's biochemical profile.
+                    </div>
+                </div>
+
+                <!-- Term 8: Age -->
+                <div class="term-card">
+                    <h3><i class="fa-solid fa-calendar-day"></i> Age</h3>
+                    <p class="term-def">The patient's age in years.</p>
+                    <div class="term-why">
+                        <strong>Why included?</strong> Age is included as a demographic feature used by the machine
+                        learning model.
+                    </div>
+                </div>
+
+                <!-- Term 9: Gender -->
+                <div class="term-card">
+                    <h3><i class="fa-solid fa-venus-mars"></i> Gender</h3>
+                    <p class="term-def">The patient's reported gender used as a demographic feature in the dataset.</p>
+                    <div class="term-why">
+                        <strong>Why included?</strong> Gender is included as a patient-level feature used by the model.
+                    </div>
+                </div>
+            </div>
+
+            <div class="terms-note">
+                <i class="fa-solid fa-circle-info"></i> These explanations are provided for educational purposes and are
+                not medical advice.
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       6. QUICK TEST PRESETS
+       ========================================================================== -->
+    <section class="section-padding" style="background-color: var(--bg-card); border-y: 1px solid var(--border-light);"
+        id="quick-test">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quick Test Presets</h2>
+                <p>Try the prediction system instantly with sample patient profiles</p>
+            </div>
+
+            <div class="presets-grid">
+                <!-- Preset 1: Healthy -->
+                <div class="preset-item">
+                    <div>
+                        <h3>Healthy Profile</h3>
+                        <p>Typical healthy/low-risk liver profile</p>
+                    </div>
+                    <button type="button" class="btn btn-secondary" id="preset-healthy">
+                        Use Healthy Profile
+                    </button>
+                </div>
+
+                <!-- Preset 2: High-Risk -->
+                <div class="preset-item">
+                    <div>
+                        <h3>High-Risk Profile</h3>
+                        <p>Example profile with elevated liver biomarkers</p>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="preset-highrisk">
+                        Use High-Risk Profile
+                    </button>
+                </div>
+
+                <!-- Preset 3: Custom -->
+                <div class="preset-item">
+                    <div>
+                        <h3>Custom Patient</h3>
+                        <p>Enter your own patient parameters</p>
+                    </div>
+                    <button type="button" class="btn btn-outline" id="preset-custom">
+                        Enter Custom Values
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       7. PATIENT PREDICTION FORM
+       ========================================================================== -->
+    <section class="section-padding" id="prediction">
+        <div class="container">
+            <div class="section-header">
+                <h2>Patient Prediction</h2>
+                <p>Enter the patient's clinical parameters</p>
+            </div>
+
+            <div class="prediction-card">
+                <div id="alert-banner" class="alert-banner hidden"></div>
+
+                <form id="prediction-form">
+                    <div class="form-grid">
+
+                        <!-- 1. Age -->
+                        <div class="form-group">
+                            <div class="label-wrap">
+                                <label for="age">Age</label>
+                                <span class="tooltip-trigger" tabindex="0">ⓘ
+                                    <span class="tooltip-popover">Patient's age in years.</span>
+                                </span>
+                            </div>
+                            <input type="number" id="age" name="age" class="form-control" min="1" max="120"
+                                placeholder="e.g. 45" required value="62">
+                            <span class="form-hint">Age in years (1 - 120)</span>
+                        </div>
+
+                        <!-- 2. Gender -->
+                        <div class="form-group">
+                            <div class="label-wrap">
+                                <label for="gender">Gender</label>
+                                <span class="tooltip-trigger" tabindex="0">ⓘ
+                                    <span class="tooltip-popover">Patient's reported biological sex.</span>
+                                </span>
+                            </div>
+                            <select id="gender" name="gender" class="form-control" required>
+                                <option value="Male" selected>Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <span class="form-hint">Biological sex</span>
+                        </div>
+
+                        <!-- 3. Total Bilirubin -->
+                        <div class="form-group">
+                            <div class="label-wrap">
+                                <label for="total_bilirubin">Total Bilirubin</label>
+                                <span class="tooltip-trigger" tabindex="0">ⓘ
+                                    <span class="tooltip-popover">Total Bilirubin: Measures the total amount of
+                                        bilirubin in the blood.</span>
+                                </span>
+                            </div>
+                            <input type="number" step="0.01" id="total_bilirubin" name="total_bilirubin"
+                                class="form-control" min="0" placeholder="e.g. 1.2" required value="10.9">
+                            <span class="form-hint">Measured in mg/dL</span>
+                        </div>
+
+                        <!-- 4. Direct Bilirubin -->
+                        <div class="form-group">
+                            <div class="label-wrap">
+                                <label for="direct_bilirubin">Direct Bilirubin</label>
+                                <span class="tooltip-trigger" tabindex="0">ⓘ
+                                    <span class="tooltip-popover">Direct Bilirubin: Conjugated bilirubin processed by
+                                        the liver.</span>
+                                </span>
+                            </div>
+                            <input type="number" step="0.01" id="direct_bilirubin" name="direct_bilirubin"
+                                class="form-control" min="0" placeholder="e.g. 0.4" required value="5.5">
+                            <span class="form-hint">Measured in mg/dL</span>
+                        </div>
+
+                        <!-- 5. Alkaline Phosphatase -->
+                        <div class="form-group">
+                            <div class="label-wrap">
+                                <label for="alkaline_phosphatase">Alkaline Phosphatase</label>
+                                <span class="tooltip-trigger" tabindex="0">ⓘ
+                                    <span class="tooltip-popover">Alkaline Phosphatase: An enzyme associated with the
+                                        liver, bile ducts, and bones.</span>
+                                </span>
+                            </div>
+                            <input type="number" step="0.1" id="alkaline_phosphatase" name="alkaline_phosphatase"
+                                class="form-control" min="0" placeholder="e.g. 210" required value="699">
+                            <span class="form-hint">Measured in IU/L</span>
+                        </div>
+
+                        <!-- 6. ALT -->
+                        <div class="form-group">
+                            <div class="label-wrap">
+                                <label for="alt">ALT (Alamine Aminotransferase)</label>
+                                <span class="tooltip-trigger" tabindex="0">ⓘ
+                                    <span class="tooltip-popover">ALT: An enzyme mainly associated with the liver;
+                                        elevated levels can occur with liver-cell injury.</span>
+                                </span>
+                            </div>
+                            <input type="number" step="0.1" id="alt" name="alt" class="form-control" min="0"
+                                placeholder="e.g. 35" required value="64">
+                            <span class="form-hint">Measured in IU/L</span>
+                        </div>
+
+                        <!-- 7. AST -->
+                        <div class="form-group">
+                            <div class="label-wrap">
+                                <label for="ast">AST (Aspartate Aminotransferase)</label>
+                                <span class="tooltip-trigger" tabindex="0">ⓘ
+                                    <span class="tooltip-popover">AST: An enzyme found in the liver and other
+                                        tissues.</span>
+                                </span>
+                            </div>
+                            <input type="number" step="0.1" id="ast" name="ast" class="form-control" min="0"
+                                placeholder="e.g. 40" required value="100">
+                            <span class="form-hint">Measured in IU/L</span>
+                        </div>
+
+                        <!-- 8. Total Proteins -->
+                        <div class="form-group">
+                            <div class="label-wrap">
+                                <label for="total_proteins">Total Proteins</label>
+                                <span class="tooltip-trigger" tabindex="0">ⓘ
+                                    <span class="tooltip-popover">Total Proteins: Measures the total amount of albumin
+                                        and globulin in the blood.</span>
+                                </span>
+                            </div>
+                            <input type="number" step="0.01" id="total_proteins" name="total_proteins"
+                                class="form-control" min="0" placeholder="e.g. 6.8" required value="7.5">
+                            <span class="form-hint">Measured in g/dL</span>
+                        </div>
+
+                        <!-- 9. Albumin -->
+                        <div class="form-group">
+                            <div class="label-wrap">
+                                <label for="albumin">Albumin</label>
+                                <span class="tooltip-trigger" tabindex="0">ⓘ
+                                    <span class="tooltip-popover">Albumin: A protein produced mainly by the
+                                        liver.</span>
+                                </span>
+                            </div>
+                            <input type="number" step="0.01" id="albumin" name="albumin" class="form-control" min="0"
+                                placeholder="e.g. 3.4" required value="3.2">
+                            <span class="form-hint">Measured in g/dL</span>
+                        </div>
+
+                        <!-- 10. A/G Ratio -->
+                        <div class="form-group">
+                            <div class="label-wrap">
+                                <label for="ag_ratio">Albumin & Globulin Ratio</label>
+                                <span class="tooltip-trigger" tabindex="0">ⓘ
+                                    <span class="tooltip-popover">A/G Ratio: The ratio between albumin and globulin
+                                        proteins.</span>
+                                </span>
+                            </div>
+                            <input type="number" step="0.01" id="ag_ratio" name="ag_ratio" class="form-control" min="0"
+                                placeholder="e.g. 1.0" required value="0.74">
+                            <span class="form-hint">Calculated ratio</span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="btn-submit" class="btn btn-primary btn-predict">
+                            Predict Liver Disease
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       8. PREDICTION OUTPUT
+       ========================================================================== -->
+    <section class="section-padding hidden" id="output-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Prediction Result</h2>
+            </div>
+
+            <div class="output-card">
+                <div class="output-header">
+                    <div class="output-result-group">
+                        <h3>Prediction Outcome</h3>
+                        <div id="output-badge" class="result-badge positive">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Liver Disease Positive
+                        </div>
+                    </div>
+
+                    <div class="risk-category-group">
+                        <span>Model-Based Risk Category</span>
+                        <div id="risk-tag" class="risk-tag high">HIGH</div>
+                    </div>
+                </div>
+
+                <div class="output-prob-box">
+                    <div class="prob-top">
+                        <span>Liver Disease Probability</span>
+                        <span id="prob-display" class="prob-number">96.94%</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div id="progress-bar-fill" class="progress-fill fill-high" style="width: 0%;"></div>
+                    </div>
+
+                    <div class="prob-labels">
+                        <span>0% (Low)</span>
+                        <span>30% (Moderate)</span>
+                        <span>70% (High)</span>
+                        <span>100%</span>
+                    </div>
+                </div>
+
+                <div class="output-explanation">
+                    <h4>Model Assessment</h4>
+                    <p id="output-explanation-text">
+                        The model predicts that this patient belongs to the positive liver-disease class based on the
+                        provided clinical parameters.
+                    </p>
+                </div>
+
+                <div class="output-actions">
+                    <button type="button" id="btn-reset-prediction" class="btn btn-outline">
+                        <i class="fa-solid fa-rotate-left"></i> Test Another Patient
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       9. MODEL PERFORMANCE
+       ========================================================================== -->
+    <section class="section-padding" style="background-color: var(--bg-card); border-y: 1px solid var(--border-light);"
+        id="performance">
+        <div class="container">
+            <div class="section-header">
+                <h2>Model Performance</h2>
+                <p>Performance of the selected LightGBM model on the unseen test set</p>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-val">77.19%</div>
+                    <div class="metric-lbl">Accuracy</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-val">84.81%</div>
+                    <div class="metric-lbl">Precision</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-val">82.72%</div>
+                    <div class="metric-lbl">Recall</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-val">83.75%</div>
+                    <div class="metric-lbl">F1-Score</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-val">78.75%</div>
+                    <div class="metric-lbl">ROC-AUC</div>
+                </div>
+            </div>
+
+            <div class="performance-note">
+                <i class="fa-solid fa-circle-check" style="color: var(--primary-sage);"></i> LightGBM was selected
+                because it provided the strongest overall balance between precision, recall, and F1-score among the
+                evaluated models.
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       10. MEDICAL DISCLAIMER
+       ========================================================================== -->
+    <section class="disclaimer-section">
+        <div class="container">
+            <div class="disclaimer-card">
+                <div class="disclaimer-icon-wrap">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="disclaimer-content">
+                    <h3>Important Medical Disclaimer</h3>
+                    <p>
+                        This application is intended for <strong>educational and research purposes only</strong>.
+                    </p>
+                    <p>
+                        Always consult a qualified healthcare professional for medical evaluation and treatment
+                        decisions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       12. FOOTER
+       ========================================================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-brand">LiverCare AI</div>
+            <div class="footer-copy">&copy; All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <!-- Client Script -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
