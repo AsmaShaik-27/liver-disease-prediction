@@ -117,44 +117,8 @@ The application also provides sample healthy and high-risk patient profiles for 
 
 ---
 
-##  REST API
 
-The application provides a JSON API through:
-
-```text
-POST /predict
-```
-
-Example request:
-
-```json
-{
-  "age": 62,
-  "gender": "Male",
-  "total_bilirubin": 10.9,
-  "direct_bilirubin": 5.5,
-  "alkaline_phosphatase": 699,
-  "alt": 64,
-  "ast": 100,
-  "total_proteins": 7.5,
-  "albumin": 3.2,
-  "ag_ratio": 0.74
-}
-```
-
-Example response:
-
-```json
-{
-  "prediction": "Liver Disease Positive",
-  "probability": 96.94,
-  "risk_category": "High"
-}
-```
-
----
-
-## 🛠️ Tech Stack
+##  Tech Stack
 
 * **Python**
 * **Pandas**
@@ -217,35 +181,6 @@ Indian-Liver-Disease-Prediction/
 
 ---
 
-##  How to Run
-
-### 1. Clone the repository
-
-```bash
-git clone <your-repository-url>
-cd Indian-Liver-Disease-Prediction
-```
-
-### 2. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Run the application
-
-```bash
-python app.py
-```
-
-### 4. Open in browser
-
-```text
-http://127.0.0.1:5000
-```
-
----
-
 ##  Model Explainability
 
 Feature importance from the LightGBM model identified the following as the most frequently used features:
@@ -260,16 +195,6 @@ Feature importance represents predictive association and should not be interpret
 
 ---
 
-## Limitations
-
-* Relatively small dataset with **570 cleaned records**
-* Dataset originates from a single geographical region
-* Model predicts the dataset's **binary liver disease classification**, not a confirmed diagnosis of cirrhosis or a specific liver pathology
-* External clinical validation has not been performed
-* The system is intended for educational and research purposes
-
----
-
 ##  Future Improvements
 
 * Add SHAP-based individual prediction explanations
@@ -280,14 +205,3 @@ Feature importance represents predictive association and should not be interpret
 
 ---
 
-## License
-
-This project is intended for **educational and research purposes**.
-
----
-
-## Author
-
-**Shaik Asma**
-
-If you found this project useful, consider giving the repository a ⭐.
