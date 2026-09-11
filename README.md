@@ -15,11 +15,9 @@ The project uses the **Indian Liver Patient Dataset (ILPD)** and a **LightGBM cl
 * SMOTE for handling class imbalance
 * Leakage-aware preprocessing pipeline
 * 5-Fold Stratified Cross-Validation
-* Comparison of 12 ML model configurations
 * Probability-based risk estimation
 * Low / Moderate / High risk categories
 * Flask web application
-* REST API with `/predict` endpoint
 * Interactive and responsive frontend
 * Quick patient profile presets
 * Medical terminology tooltips
@@ -81,7 +79,7 @@ SMOTE is applied only during model training to avoid data leakage into the test 
 
 ##  Model Performance
 
-The project evaluated **12 different model configurations**, including Logistic Regression, Decision Tree, Random Forest, Gradient Boosting, XGBoost, LightGBM, SVM, and KNN.
+The project evaluated **different model configurations**, including Logistic Regression, Decision Tree, Random Forest, Gradient Boosting, XGBoost, LightGBM, SVM, and KNN.
 
 ### Best Model: LightGBM
 
